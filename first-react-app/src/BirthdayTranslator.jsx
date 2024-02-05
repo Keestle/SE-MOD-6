@@ -1,0 +1,33 @@
+import { useState } from "react";
+
+const phrases = new Map([
+    ['english', 'Happy Birthday'],
+    ['german', 'Alles Gute zum Geburtstag'],
+    ['spanish', 'Feliz Cumpleaños']
+]);
+
+function BirthdayTranslator() {
+
+    const [currentPhrase, setCurrentPhrase] = useState(
+        //== Combine both values into a single State object
+        {lang: 'english', phrase: 'Happy Birthday'}
+    )
+
+    const handleChangeLanguage = (newlang) => {
+       setCurrentPhrase({lang: newlang, phrase: phrases.get(newlang)})
+    }
+
+    return (
+        <div className="BirthdayTranslator componentBox">
+            <h3>{currentPhrase.phrase}! ({currentPhrase.lang})</h3>
+            <button onClick={() => 
+handleChangeLanguage('english')}>English</button>
+            <button onClick={() => 
+handleChangeLanguage('german')}>German</button>
+            <button onClick={() => 
+handleChangeLanguage('spanish')}>Spanish</button>
+        </div>
+    )
+}
+
+export default BirthdayTranslator
